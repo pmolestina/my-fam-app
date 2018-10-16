@@ -1,0 +1,35 @@
+<div fxLayoutAlign="space-between center">
+  <h2>Sites</h2>
+  <mat-form-field>
+    <mat-select placeholder="Site type" (ngModelChange)="filterSites($event)" [(ngModel)]="siteTypeKey">
+      <mat-option [value]='undefined'>All</mat-option>
+      <mat-option *ngFor='let s of siteTypes ' [value]="s.key">{{s.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div class="list-container">
+  <div class="filter-box">
+    <app-filter [filter]="filter" (change)="filterChange($event)"></app-filter>
+  </div>
+  <mat-table #table [dataSource]="dataSource">
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let site"> {{site.name}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="url">
+      <mat-header-cell *matHeaderCellDef> Url </mat-header-cell>
+      <mat-cell *matCellDef="let site"> <a mat-mini-fab color="accent" target="_blank" href="{{site.url}}"><mat-icon>language</mat-icon></a> </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+      <mat-cell *matCellDef="let site">
+        <app-actionbuttonslist [listType]="'site'" [data]="site" (click)="onclick($event)"></app-actionbuttonslist>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
+<button mat-fab [routerLink]="['/site-edit/new']">
+  <mat-icon>add</mat-icon>
+</button>

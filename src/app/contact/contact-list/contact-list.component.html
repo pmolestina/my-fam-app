@@ -1,0 +1,31 @@
+<div fxLayoutAlign="space-between center">
+  <h2>Contacts</h2>
+  <app-families [showAlloption]="true" [familyKey]="familyKey" (change)="filterContacts($event)"></app-families>
+</div>
+<div class="list-container mat-elevation-z8">
+  <div class="filter-box">
+    <app-filter [filter]="filter" (change)="filterChange($event)"></app-filter>
+  </div>
+  <mat-table #table [dataSource]="dataSource">
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let contact"> {{contact.name}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+      <mat-cell *matCellDef="let contact"> {{contact.email}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+      <mat-cell *matCellDef="let contact">
+        <app-actionbuttonslist [listType]="'contact'" [data]="contact"></app-actionbuttonslist>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+</div>
+<button mat-fab [routerLink]="['/contact-edit/new']">
+  <mat-icon>add</mat-icon>
+</button>

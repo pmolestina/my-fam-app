@@ -1,0 +1,14 @@
+<mat-card *ngIf="family$ |async as family" class="container">
+  <mat-card-title>
+    Family
+  </mat-card-title>
+  <mat-form-field>
+    <input matInput [(ngModel)]="family.name" placeholder="Name" [formControl]="name" required>
+    <mat-error *ngIf="name.invalid">Name required</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [(ngModel)]="family.phone" placeholder="Phone">
+  </mat-form-field>
+  <app-address [address]="family.address" (change)="addressChange($event)" class="container"></app-address>
+  <app-actionbuttons [isNew]="isNew" [data]="family" [isValid]="isFormValid()" (click)="actionButtonHandler($event)"></app-actionbuttons>
+</mat-card>

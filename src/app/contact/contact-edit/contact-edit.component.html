@@ -1,0 +1,23 @@
+<mat-card *ngIf="contact$ |async as contact" class="container">
+  <mat-card-title>
+    Contact
+  </mat-card-title>
+  <mat-form-field>
+    <input matInput [(ngModel)]="contact.name" placeholder="Name" [formControl]="name" required>
+    <mat-error *ngIf="name.invalid">Name required</mat-error>
+  </mat-form-field>
+  <app-families [familyKey]="contact.familyKey" (change)="onchange($event)"></app-families>
+  <mat-form-field>
+    <input matInput [(ngModel)]="contact.email" placeholder="Contact Email" [formControl]="email">
+    <mat-error *ngIf="email.invalid">Invalid email</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [(ngModel)]="contact.phone" placeholder="Contact Phone">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" [formControl]="dob" placeholder="Contact Birthday">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <app-actionbuttons [isNew]="isNew" [data]="contact" [isValid]="isFormValid()" (click)="actionButtonHandler($event)"></app-actionbuttons>
+</mat-card>

@@ -1,0 +1,23 @@
+<div class="flex-container">
+  <mat-card class="flex-item">
+    <h1>Welcome! </h1>
+    <h2>Molestina Family Application</h2>
+    <p>This app will help organize some of the contact information of all members of the family</p>
+    <div *ngIf="(authService.user$ | async)?.uid">
+      <a class="docs-button mat-raised-button" mat-raised-button [routerLink]="['/profile']"><span class="mat-button-wrapper">My Profile</span><div class="mat-button-ripple mat-ripple" matripple=""></div><div class="mat-button-focus-overlay"></div></a>
+    </div>
+    <div *ngIf="!(authService.user$ | async)?.uid">
+      <a class="docs-button mat-raised-button" [routerLink]="['/login']"><span class="mat-button-wrapper">Login</span><div class="mat-button-ripple mat-ripple" matripple=""></div><div class="mat-button-focus-overlay"></div></a>
+    </div>
+  </mat-card>
+  <!-- <mat-card class="flex-item">
+    <h1>Angular Material</h1>
+    <h2> Material Design components for Angular</h2>
+    <p>This is placeholder</p>
+  </mat-card>
+  <mat-card class="flex-item">
+    <h1>Angular Material</h1>
+    <h2> Material Design components for Angular</h2>
+    <p>This is placeholder</p>
+  </mat-card> -->
+</div>

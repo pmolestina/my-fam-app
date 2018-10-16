@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+<div mat-dialog-content>
+  <p *ngIf="!data.isHtml">{{data.message}}</p>
+  <div innerHtml="{{data.message}}" *ngIf="data.isHtml"></div>
+</div>
+<div mat-dialog-actions>
+  <button *ngIf="data.okBtn" mat-raised-button (click)="close(true)">Ok</button>
+  <button mat-raised-button (click)="close(false)">{{data.closeBtnText}}</button>
+</div>

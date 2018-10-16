@@ -1,0 +1,21 @@
+<mat-card  class="container">
+  <mat-card-header>
+    <mat-card-title>
+      <h2>Profile</h2>
+    </mat-card-title>
+    <mat-card-subtitle>User Information</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <img mat-card-sm-image [src]="user.photoURL" />
+    <p>{{user.email}}</p>
+    <mat-form-field>
+      <input matInput [(ngModel)]="user.displayName" placeholder="Display name" [formControl]="displayName" required>
+      <mat-error *ngIf="displayName.invalid">Display name required</mat-error>
+    </mat-form-field>
+    <app-families [familyKey]="user.familyKey" (change)="onchange($event)"></app-families>
+  </mat-card-content>
+  <div>
+    
+  <app-actionbuttons [data]="user" [isValid]="isValid()" (click)="actionButtonHandler($event)"></app-actionbuttons>
+  </div>
+</mat-card>

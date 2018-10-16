@@ -1,0 +1,16 @@
+{
+  "rules": {
+    ".read": "auth != true",
+    ".write": "auth != true",
+    "contacts": {
+      ".indexOn": [
+        "familyKey"
+      ]
+    },
+    "sites": {
+      ".indexOn": [
+        "siteTypeKey"
+      ]
+    }
+  }
+}

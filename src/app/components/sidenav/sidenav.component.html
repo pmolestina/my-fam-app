@@ -1,0 +1,55 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center" class="mat-elevation-z1">
+    <button class="home-button" mat-button (click)="sidenavclick('home')">
+    <mat-icon>store_mall_directory</mat-icon>
+  </button>
+    <button *ngIf="(authService.user$ | async)?.uid" mat-raised-button color="warn" (click)="sidenavclick('logout')">Logout</button>
+  </mat-toolbar-row>
+  <mat-toolbar-row *ngIf="(authService.user$ | async)?.uid" class="welcome">
+    <span class="displayname">
+    Welcome {{displayName}}!
+    </span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-nav-list *ngIf="!(authService.user$ | async)?.uid">
+
+  <mat-list-item>
+    <a matLine (click)="sidenavclick('login')">
+      <mat-icon>security</mat-icon> Login
+    </a>
+  </mat-list-item>
+  <mat-divider></mat-divider>
+</mat-nav-list>
+<mat-nav-list *ngIf="(authService.user$ | async)?.uid">
+  <mat-list-item>
+    <a matLine (click)="sidenavclick('contact-list')">
+      <mat-icon>person</mat-icon> Contacts
+    </a>
+  </mat-list-item>
+  <mat-divider></mat-divider>
+  <mat-list-item>
+    <a matLine (click)="sidenavclick('family-list')">
+      <mat-icon>people</mat-icon> Families
+    </a>
+  </mat-list-item>
+  <mat-divider></mat-divider>
+  <mat-list-item>
+    <a matLine (click)="sidenavclick('site-list')">
+      <mat-icon>computer</mat-icon> Sites
+    </a>
+  </mat-list-item>
+  <mat-divider></mat-divider>
+  <mat-list-item>
+    <a matLine (click)="sidenavclick('profile')">
+      <mat-icon>account_circle</mat-icon> Profile
+    </a>
+  </mat-list-item>
+</mat-nav-list>
+<!-- <mat-nav-list>
+  <mat-list-item *ngFor="let user of users | async">
+    <a matLine [routerLink]="['/contactmanager', user.id]">
+      <mat-icon svgIcon="{{user.avatar}}"></mat-icon> {{ user.name }}
+    </a>
+  </mat-list-item>
+</mat-nav-list> -->

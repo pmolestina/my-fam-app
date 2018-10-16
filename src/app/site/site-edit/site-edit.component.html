@@ -1,0 +1,28 @@
+<mat-card *ngIf="site$ |async as site" class="container">
+  <mat-card-title>
+    Site
+  </mat-card-title>
+  <mat-form-field>
+    <input matInput [(ngModel)]="site.name" placeholder="Name" [formControl]="name" required>
+    <mat-error *ngIf="name.invalid">Name required</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Site Types" [(ngModel)]="site.siteTypeKey" [formControl]="siteTypeKey" required>
+      <mat-option *ngFor='let s of siteTypes ' [value]="s.key">{{s.name}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="siteTypeKey.invalid">Site type required</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [(ngModel)]="site.url" placeholder="Site Url">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [(ngModel)]="site.user" placeholder="User">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [(ngModel)]="site.password" placeholder="Password">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [(ngModel)]="site.notes" placeholder="Notes">
+  </mat-form-field>
+  <app-actionbuttons [isNew]="isNew" [isValid]="isFormValid()" [data]="site" (click)="actionButtonHandler($event)"></app-actionbuttons>
+</mat-card>

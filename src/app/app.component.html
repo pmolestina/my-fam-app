@@ -1,0 +1,11 @@
+<div *ngIf="loading"  class="loading" >
+  <mat-spinner></mat-spinner>
+</div>
+<mat-sidenav-container class="app-sidenav-container">
+  <mat-sidenav #sidenav [opened]="!isScreenSmall()" [mode]="isScreenSmall()?'over' : 'side'" class="app-sidenav mat-elevation-z10">
+    <app-sidenav (toggleSidenav)="toggle()"></app-sidenav>
+  </mat-sidenav>
+  <mat-sidenav-content class="app-sidenav-content">
+    <app-content (toggleSidenav)="toggle()"></app-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,34 @@
+<mat-toolbar color="primary" class="mat-elevation-z6">
+  <button mat-button class="sidenav-toggle" (click)="toggleSidenav.emit()"><mat-icon>menu</mat-icon></button>
+  <span>{{title}}</span>
+  <!--<mat-toolbar-row>
+    <div fxLayoutAlign="space-between center" class="nav-buttons">
+      <div>
+        <button mat-button class="sidenav-toggled" (click)="toggleSidenav.emit()"><mat-icon>menu</mat-icon></button>
+        <span>{{title}}</span>
+      </div>
+      <div *ngIf="(authService.user$ | async)?.uid">
+        <span class="navbar_toggle_desktop">
+        <button mat-button [routerLink]="['/contact-list']" routerLinkActive="active">Contacts</button>
+        <button mat-button [routerLink]="['/family-list']" routerLinkActive="active">Families</button>
+        </span>
+        <button mat-button [matMenuTriggerFor]="appMenu"><mat-icon>account_circle</mat-icon>
+        </button>
+        <mat-menu #appMenu="matMenu">
+          <button mat-menu-item routerLink='/profile'>Profile</button>
+          <button mat-menu-item (click)="authService.logout()"> Logout </button>
+        </mat-menu>
+      </div>
+    </div>
+  </mat-toolbar-row>
+   <mat-toolbar-row class="navbar_toggle_mobile" *ngIf="(authService.user$ | async)?.uid">
+    <div class="nav-buttons navbar">
+      <button mat-button [routerLink]="['/contact-list']" routerLinkActive="active">Contacts</button>
+      <span class="spacer"></span>
+      <button mat-button [routerLink]="['/family-list']" routerLinkActive="active">Families</button>
+    </div>
+  </mat-toolbar-row> -->
+</mat-toolbar>
+<div class="bodywrapper">
+    <router-outlet></router-outlet>
+</div>

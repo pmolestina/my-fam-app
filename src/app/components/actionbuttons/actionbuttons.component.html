@@ -1,0 +1,5 @@
+<mat-card-actions align="right">
+  <button mat-raised-button color="primary" (click)="onClick('save')" [disabled]="!isValid">Save</button>
+  <button mat-raised-button *ngIf="!isNew" color="warn" (click)="onClick('remove')">Remove</button>
+  <button mat-raised-button (click)="onClick('cancel')">Cancel</button>
+</mat-card-actions>

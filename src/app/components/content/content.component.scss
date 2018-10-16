@@ -1,0 +1,58 @@
+.bodywrapper{
+  margin: 15px;
+}
+
+$iconWidth:56px;
+
+.sidenav-toggle{
+  display: none;
+  padding: 0;
+  margin: 0px;
+  min-width: $iconWidth;
+
+  @media (max-width:720px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+mat-icon{
+  font-size: 30px;
+  height: $iconWidth;
+  width: $iconWidth;
+  line-height: $iconWidth;
+  color: white;
+}
+
+
+/*classes below not needed
+.nav-buttons{
+  width: 100%;
+}
+.active{
+  background-color:#7642D5;
+}
+button{
+  min-width: 50px;
+}
+
+.navbar {
+  display: flex;
+}
+
+.navbar_toggle_mobile{
+  display: none;
+  @media(max-width:720px){
+    display: flex;
+  }
+}
+.navbar_toggle_desktop{
+  @media(max-width:720px){
+    display: none;
+  }
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+*/
