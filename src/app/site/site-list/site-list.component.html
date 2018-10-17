@@ -2,7 +2,6 @@
   <h2>Sites</h2>
   <mat-form-field>
     <mat-select placeholder="Site type" (ngModelChange)="filterSites($event)" [(ngModel)]="siteTypeKey">
-      <mat-option [value]='undefined'>All</mat-option>
       <mat-option *ngFor='let s of siteTypes ' [value]="s.key">{{s.name}}</mat-option>
     </mat-select>
   </mat-form-field>

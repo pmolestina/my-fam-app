@@ -42,8 +42,9 @@ export class SiteListComponent implements OnInit {
     this.getSites();
 
     this.sessionService.siteTypeKey$.subscribe(siteTypeKey => {
-      this.siteTypeKey = siteTypeKey;
-      this.filterSites(siteTypeKey);
+      // @ts-ignore
+      this.siteTypeKey = siteTypeKey === undefined ? 1 : siteTypeKey;
+      this.filterSites(this.siteTypeKey);
     });
     this.sessionService.filterValue$.subscribe(filterValue => {
       this.filter = filterValue;
@@ -51,7 +52,7 @@ export class SiteListComponent implements OnInit {
 
   }
   onclick(value) {
-    if (value.constructor.name.indexOf("Event") > -1) return;
+    if (value.constructor.name.indexOf('Event') > -1) return;
     switch (value.action) {
       case "credentials":
         this.getcredentials(value.data);

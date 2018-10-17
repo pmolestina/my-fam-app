@@ -21,14 +21,14 @@ export class SiteService {
       ref => ref.orderByChild('lowercaseName'));
 
     this.siteType$ = new BehaviorSubject(null);
-    this.siteTypeSites$ = this.siteType$.switchMap(siteTypeKey => 
-      afdb.list('/sites', ref => 
+    this.siteTypeSites$ = this.siteType$.switchMap(siteTypeKey =>
+      afdb.list('/sites', ref =>
         siteTypeKey ? ref.orderByChild('siteTypeKey').equalTo(siteTypeKey) : ref
       ).snapshotChanges()
     );
   }
   filterByType(siteTypeKey: string|null) {
-    this.siteType$.next(siteTypeKey); 
+    this.siteType$.next(siteTypeKey);
   }
   getAllSites() {
     return this.sites$;

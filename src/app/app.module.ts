@@ -49,14 +49,10 @@ import { CommonService } from './core/common.service';
 import { FamiliesComponent } from './components/families.component';
 import { ProfileService } from './auth/profile.service';
 
-const firebaseConfig = {
-  apiKey: 'AIzaSyDgFG2F9dAG2qcD-gFuRgFrGK8xWdN7OTY',
-  authDomain: 'thefamily-eb9bb.firebaseapp.com',
-  databaseURL: 'https://thefamily-eb9bb.firebaseio.com',
-  projectId: 'thefamily-eb9bb',
-  storageBucket: 'thefamily-eb9bb.appspot.com',
-  messagingSenderId: '91662480324'
-};
+import { Config } from './Config';
+const config = Config;
+
+const firebaseConfig = config.getfirebaseConfig();
 
 @NgModule({
   declarations: [
