@@ -49,8 +49,8 @@ import { CommonService } from './core/common.service';
 import { FamiliesComponent } from './components/families.component';
 import { ProfileService } from './auth/profile.service';
 
-import { Config } from './Config';
-const config = Config;
+import { AppConfig } from './app.config';
+const config = AppConfig;
 
 const firebaseConfig = config.getfirebaseConfig();
 
