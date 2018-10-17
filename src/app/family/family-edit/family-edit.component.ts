@@ -5,7 +5,7 @@ import { FamilyService } from '../family.service';
 import { Family } from '../../model/family';
 import { Router, ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/map';
-import { FormControl, Validators } from "@angular/forms";
+import { FormControl, Validators } from '@angular/forms';
 import { Address } from '../../model/address';
 import { DialogService } from '../../core/dialog.service';
 

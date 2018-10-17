@@ -10,6 +10,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { UserIdleModule } from 'angular-user-idle';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -95,7 +96,8 @@ const firebaseConfig = config.getfirebaseConfig();
     AngularFireDatabaseModule,
     FlexLayoutModule,
     StoreModule.forRoot(reducers),
-    StoreDevtoolsModule.instrument({ maxAge: 25 })
+    StoreDevtoolsModule.instrument({ maxAge: 25 }),
+    UserIdleModule.forRoot({idle: 30, timeout: 1, ping: 600})
   ],
   providers: [
     ContactService,

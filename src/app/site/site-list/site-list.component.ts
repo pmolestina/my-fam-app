@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SiteService } from '../site.service';
-import { Site } from '../../model/site';
 import { Observable } from 'rxjs/Observable';
-import { AngularFireList } from '@angular/fire/database';
 import { FamilyService } from '../../family/family.service';
-import { Family } from '../../model/family';
 import { SessionService } from '../../core/session.service';
-import { Store } from '@ngrx/store';
 import { siteTypes } from '../site.types';
 import { DialogService } from '../../core/dialog.service';
 import { EncryptService } from '../../core/encrypt.service';
@@ -52,9 +48,9 @@ export class SiteListComponent implements OnInit {
 
   }
   onclick(value) {
-    if (value.constructor.name.indexOf('Event') > -1) return;
+    if (value.constructor.name.indexOf('Event') > -1) { return; }
     switch (value.action) {
-      case "credentials":
+      case 'credentials':
         this.getcredentials(value.data);
         break;
       default:
@@ -63,10 +59,10 @@ export class SiteListComponent implements OnInit {
 
   }
   getcredentials(site) {
-    var s = site;
-    let password = s.password ? this.encryptService.decrypt(s.password) : "n/a";
-    var message = "User Name: " + s.user + " <BR/> "
-      + "Password: " + password
+    const s = site;
+    const password = s.password ? this.encryptService.decrypt(s.password) : "n/a";
+    const message = 'User Name: ' + s.user + ' <BR/> '
+      + 'Password: ' + password
     this.dialogService.openMessageHtml(message);
 
   }
@@ -74,16 +70,16 @@ export class SiteListComponent implements OnInit {
     this.siteTypeSites$ = this.siteService.siteTypeSites$.map(items => items.sort(this.commonService.sortByName));
     this.siteTypeSites$.subscribe(data => {
       this.dataSource = this.commonService.loadDataTable(data, this.filter);
-    })
+    });
   }
-  //filters by family selected
+  // filters by family selected
   filterSites(siteTypeKey?: string) {
     this.siteService.filterByType(siteTypeKey);
     this.sessionService.setSiteTypeKey(siteTypeKey);
   }
-  //this filters by text box
+  // this filters by text box
   filterChange(value) {
-    if (value.constructor.name.indexOf("Event") > -1) return;
+    if (value.constructor.name.indexOf('Event') > -1) return;
     this.filter = value;
     this.dataSource.filter = value.trim().toLowerCase();
     this.sessionService.setFilterValue(value);
