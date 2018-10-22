@@ -18,6 +18,7 @@ import { EncryptService } from '../../core/encrypt.service';
   styleUrls: ['./site-edit.component.scss']
 })
 export class SiteEditComponent implements OnInit {
+  hide = true;
   siteTypes: any[];
   site$: Observable<any>;
   siteRef: AngularFireObject<{}>;
@@ -51,9 +52,9 @@ export class SiteEditComponent implements OnInit {
     this.site$ = this.siteRef.snapshotChanges().map(c => {
       //key: c.payload.key, ...c.payload.val() 
       const key = c.payload.key;
-      const data = { key, ...c.payload.val() };
-      // if (data.password)
-      //   data.password = this.encryptService.decrypt(data.password);
+      const data = { key, ...c.payload.val() } as Site;
+      if (data.password)
+         data.password = this.encryptService.decrypt(data.password);
       return data;
 
     });

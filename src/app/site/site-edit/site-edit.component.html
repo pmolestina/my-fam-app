@@ -19,7 +19,8 @@
     <input matInput [(ngModel)]="site.user" placeholder="User">
   </mat-form-field>
   <mat-form-field>
-    <input matInput [(ngModel)]="site.password" placeholder="Password">
+    <input matInput [(ngModel)]="site.password" placeholder="Password" [type]="hide ? 'password' : 'text'">
+    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
   </mat-form-field>
   <mat-form-field>
     <input matInput [(ngModel)]="site.notes" placeholder="Notes">
