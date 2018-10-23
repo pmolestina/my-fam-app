@@ -34,7 +34,7 @@ export class AuthService {
     // Start watch when time is up.
     this.userIdle.onTimeout().subscribe(() => {
       console.log('session timed out. user logged off');
-      this.dialogService.openMessage('"Your session has timed out!');
+      this.dialogService.openMessage('Your session has timed out!');
       this.logout();
     });
   }
@@ -47,9 +47,9 @@ export class AuthService {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password);
   }
   logout() {
+    this.stopWatching();
     this.router.navigate(['/home']);
     this.afAuth.auth.signOut().catch(error => console.log('auth-error-logout', error));
-    this.stopWatching();
   }
   stopWatching() {
     this.userIdle.stopWatching();

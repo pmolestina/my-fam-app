@@ -39,7 +39,7 @@ export class SiteEditComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.activatedRoute.snapshot.params['id'];
-    this.isNew = this.id == 'new';
+    this.isNew = this.id === 'new';
     if (!this.isNew) {
       this.getSite(this.id);
     }
@@ -50,11 +50,11 @@ export class SiteEditComponent implements OnInit {
   getSite(id) {
     this.siteRef = this.siteService.getSite(this.id);
     this.site$ = this.siteRef.snapshotChanges().map(c => {
-      //key: c.payload.key, ...c.payload.val() 
       const key = c.payload.key;
       const data = { key, ...c.payload.val() } as Site;
-      if (data.password)
-         data.password = this.encryptService.decrypt(data.password);
+      if (data.password) {
+        data.password = this.encryptService.decrypt(data.password);
+      }
       return data;
 
     });

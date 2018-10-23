@@ -51,6 +51,7 @@ import { FamiliesComponent } from './components/families.component';
 import { ProfileService } from './auth/profile.service';
 
 import { AppConfig } from './app.config';
+import { RegisterComponent } from './auth/register/register.component';
 const config = AppConfig;
 
 const firebaseConfig = config.getfirebaseConfig();
@@ -76,7 +77,8 @@ const firebaseConfig = config.getfirebaseConfig();
     DialogComponent,
     SearchFilterPipe,
     FilterComponent,
-    FamiliesComponent
+    FamiliesComponent,
+    RegisterComponent
   ],
   entryComponents: [
     MyerrorhandlerComponent,

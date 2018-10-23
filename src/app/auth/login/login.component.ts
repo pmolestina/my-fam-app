@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MatSnackBar } from "@angular/material/snack-bar";
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Action } from '@ngrx/store';
 
 @Component({
@@ -11,7 +11,7 @@ import { Action } from '@ngrx/store';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  credentials = { email: "", password: "" };
+  credentials = { email: '', password: '' };
   hide = true;
   email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('', [Validators.required]);
@@ -34,13 +34,13 @@ export class LoginComponent implements OnInit {
         .then(_ => this.router.navigate(['/home']))
         .catch(error => {
           console.log('auth-error-login', error)
-          this.openSnackBar(error,"Close");
+          this.openSnackBar(error, 'Close' );
         });
     else
       this.authService.login();
   }
   isFormValid() {
-    return this.getErrorMessage() == "";
+    return this.getErrorMessage() === '';
   }
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
