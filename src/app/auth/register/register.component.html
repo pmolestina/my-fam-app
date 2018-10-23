@@ -1,0 +1,27 @@
+<form (ngSubmit)="register(true)">
+
+  <mat-card class="container">
+    <mat-card-title>
+      Register
+    </mat-card-title>
+    <mat-form-field>
+      <input matInput [(ngModel)]="credentials.email" placeholder="Enter your email" [formControl]="email" required>
+      <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [(ngModel)]="credentials.password" placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [formControl]="password" required>
+      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+      <mat-error *ngIf="password.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [(ngModel)]="credentials.password2" placeholder="Re-enter your password" [type]="hide ? 'password' : 'text'" [formControl]="password2" required>
+      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+      <mat-error *ngIf="password2.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+    <span class="danger" *ngIf="credentials.password!=credentials.password2">Passwords don't match!</span>
+
+    <mat-card-actions align="right">
+      <button mat-raised-button (click)="register(true)" [disabled]="!isFormValid()">Register</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
