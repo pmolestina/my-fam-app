@@ -51,7 +51,10 @@ export class AuthService {
     this.router.navigate(['/home']);
     this.afAuth.auth.signOut().catch(error => console.log('auth-error-logout', error));
   }
-  stopWatching() {
+  register(credentials) {
+    return this.afAuth.auth.createUserWithEmailAndPassword(credentials.user, credentials.password);
+  }
+  private stopWatching() {
     this.userIdle.stopWatching();
   }
 }

@@ -25,6 +25,8 @@ import { SiteEditComponent } from './site/site-edit/site-edit.component';
 import { SiteService } from './site/site.service';
 import { SiteListComponent } from './site/site-list/site-list.component';
 
+import { ParticipantService } from './participant/participant.service';
+
 import { SessionService } from './core/session.service';
 import { AuthService } from './auth/auth.service';
 import { HomeComponent } from './home/home.component';
@@ -105,6 +107,7 @@ const firebaseConfig = config.getfirebaseConfig();
     ContactService,
     FamilyService,
     SiteService,
+    ParticipantService,
     SessionService,
     AuthGuard,
     AuthService,

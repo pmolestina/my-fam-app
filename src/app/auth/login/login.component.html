@@ -14,7 +14,9 @@
     <mat-error *ngIf="password.invalid">{{getErrorMessage()}}</mat-error>
   </mat-form-field>
   <mat-card-actions align="right">
-    <button mat-raised-button (click)="login(true)" [disabled]="!isFormValid()">Login</button>
+
+    <button mat-raised-button  [disabled]="!isFormValid()">Login</button>
   </mat-card-actions>
+  <a href="/register">Register</a>
 </mat-card>
 </form>

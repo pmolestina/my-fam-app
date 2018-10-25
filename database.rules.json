@@ -11,6 +11,11 @@
       ".indexOn": [
         "siteTypeKey"
       ]
+    },
+    "participants": {
+      ".indexOn": [
+        "verificationEmail"
+      ]
     }
   }
 }

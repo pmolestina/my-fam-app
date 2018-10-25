@@ -29,15 +29,15 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   login(custom) {
-    if (custom)
+    if (custom) {
       this.authService.loginCustom(this.credentials.email, this.credentials.password)
         .then(_ => this.router.navigate(['/home']))
         .catch(error => {
           console.log('auth-error-login', error)
           this.openSnackBar(error, 'Close' );
-        });
-    else
-      this.authService.login();
+        }); }
+    else {
+      this.authService.login(); }
   }
   isFormValid() {
     return this.getErrorMessage() === '';

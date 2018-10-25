@@ -21,7 +21,7 @@
     <span class="danger" *ngIf="credentials.password!=credentials.password2">Passwords don't match!</span>
 
     <mat-card-actions align="right">
-      <button mat-raised-button (click)="register(true)" [disabled]="!isFormValid()">Register</button>
+      <button mat-raised-button [disabled]="!isFormValid()">Register</button>
     </mat-card-actions>
   </mat-card>
 </form>
