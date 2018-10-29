@@ -54,6 +54,9 @@ export class AuthService {
   register(credentials) {
     return this.afAuth.auth.createUserWithEmailAndPassword(credentials.user, credentials.password);
   }
+  reset_password(credentials) {
+    return this.afAuth.auth.sendPasswordResetEmail(credentials.email);
+  }
   private stopWatching() {
     this.userIdle.stopWatching();
   }

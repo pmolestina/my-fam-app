@@ -9,6 +9,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { ProfileComponent } from './auth/profile/profile.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 import { SiteEditComponent } from './site/site-edit/site-edit.component';
 import { SiteListComponent } from './site/site-list/site-list.component';
 
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'contact-list', component: ContactListComponent, canActivate: [AuthGuard] },
   { path: 'contact-edit/:id', component: ContactEditComponent, canActivate: [AuthGuard] },
   { path: 'family-list', component: FamilyListComponent, canActivate: [AuthGuard] },

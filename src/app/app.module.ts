@@ -54,6 +54,7 @@ import { ProfileService } from './auth/profile.service';
 
 import { AppConfig } from './app.config';
 import { RegisterComponent } from './auth/register/register.component';
+import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 const config = AppConfig;
 
 const firebaseConfig = config.getfirebaseConfig();
@@ -80,7 +81,8 @@ const firebaseConfig = config.getfirebaseConfig();
     SearchFilterPipe,
     FilterComponent,
     FamiliesComponent,
-    RegisterComponent
+    RegisterComponent,
+    ForgotPasswordComponent
   ],
   entryComponents: [
     MyerrorhandlerComponent,
