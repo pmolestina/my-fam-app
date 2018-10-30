@@ -40,18 +40,14 @@ export class SiteEditComponent implements OnInit {
   ngOnInit() {
     this.id = this.activatedRoute.snapshot.params['id'];
     this.isNew = this.id === 'new';
-    if (!this.isNew) {
-      this.getSite(this.id);
-    }
-    else {
-      this.site$ = Observable.of({}) as Observable<Site>;
-    }
+    this.getSite();
   }
-  getSite(id) {
+  getSite() {
     this.siteRef = this.siteService.getSite(this.id);
     this.site$ = this.siteRef.snapshotChanges().map(c => {
-      const key = c.payload.key;
-      const data = { key, ...c.payload.val() } as Site;
+      //const key = c.payload.key!='new'?c.payload.key: undefined;
+      //const data = { key, ...c.payload.val() } as Site;
+      const data = { ...c.payload.val() } as Site;
       if (data.password) {
         data.password = this.encryptService.decrypt(data.password);
       }
@@ -63,10 +59,12 @@ export class SiteEditComponent implements OnInit {
     if (site.password) {
       site.password = this.encryptService.encrypt(site.password);
     }
-    if (this.isNew)
-      this.siteService.addSite(site).then(_ => this.router.navigate(['site-list']));
-    else
-      this.siteService.saveSite(site, site.key).then(_ => this.router.navigate(['site-list']));
+    if (this.isNew) {
+      this.siteService.addSite(site).then( _ => this.router.navigate(['site-list']));
+    }
+    else {
+      this.siteService.saveSite(site).then(_ => this.router.navigate(['site-list']));
+    }
   }
   remove(site: Site) {
     this.siteService.removeSite(site.key).then(_ => this.router.navigate(['site-list']));

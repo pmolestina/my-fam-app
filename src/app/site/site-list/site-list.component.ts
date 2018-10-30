@@ -60,7 +60,7 @@ export class SiteListComponent implements OnInit {
   }
   getcredentials(site) {
     const s = site;
-    const password = s.password ? this.encryptService.decrypt(s.password) : "n/a";
+    const password = s.password ? this.encryptService.decrypt(s.password) : 'n/a';
     const message = 'User Name: ' + s.user + ' <BR/> '
       + 'Password: ' + password
     this.dialogService.openMessageHtml(message);

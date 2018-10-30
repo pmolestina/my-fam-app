@@ -37,14 +37,16 @@ export class ContactService {
   }
   addContact(contact) {
     contact.lowercaseName = contact.name.toLowerCase();
-    return this.contacts$.push(contact);
+    const ref = this.contacts$.push(contact);
+    contact.key = ref.key;
+    return ref.set(contact);
   }
-  //destructive save overwrites
+  // destructive save overwrites
   saveContact(contact, id) {
     contact.lowercaseName = contact.name.toLowerCase();
     return this.contact$.set(contact).then(_ => console.log('success')).catch(this.errorHandler);
   }
-  //updates just the properties
+  // updates just the properties
   updateContact(contact, id) {
     contact.lowercaseName = contact.name.toLowerCase();
     return this.contact$.update(contact).then(_ => console.log('success')).catch(this.errorHandler);

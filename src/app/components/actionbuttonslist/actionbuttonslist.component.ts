@@ -16,7 +16,7 @@ export class ActionbuttonslistComponent implements OnInit {
 
   ngOnInit() {
     switch (this.listType) {
-      case "site":
+      case 'site':
         this.buttons = buttonList
         break;
 
@@ -26,11 +26,9 @@ export class ActionbuttonslistComponent implements OnInit {
     }
   }
   onClick(action, data) {
-    if(action=="edit")
-      {
-        
-        this.router.navigate(['/' + this.listType + '-edit', data.key]);
-        
+    if (action === 'edit') {
+        const key = data.key;
+        this.router.navigate(['/' + this.listType + '-edit', key]);
       }
     this.click.emit({ action: action, data: data });
 

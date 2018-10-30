@@ -38,11 +38,11 @@ export class ContactEditComponent implements OnInit {
   }
   ngOnInit() {
     this.id = this.activatedRoute.snapshot.params['id'];
-    this.isNew = this.id == 'new';
+    this.isNew = this.id === 'new';
     if (!this.isNew) {
       this.getContact(this.id);
-      this.contact$.subscribe(contact=>{
-        this.familyKey=contact.familyKey;
+      this.contact$.subscribe(contact => {
+        this.familyKey = contact.familyKey;
       })
     }
     else {

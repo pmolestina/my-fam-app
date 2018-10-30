@@ -39,15 +39,17 @@ export class SiteService {
   }
   addSite(site) {
     site.lowercaseName = site.name.toLowerCase();
-    return this.sites$.push(site);
+    const ref = this.sites$.push(site);
+    site.key = ref.key;
+    return ref.set(site);
   }
-  //destructive save overwrites
-  saveSite(site, id) {
+  // destructive save overwrites
+  saveSite(site) {
     site.lowercaseName = site.name.toLowerCase();
     return this.site$.set(site).then(_ => console.log('sucess')).catch(this.errorHandler);
   }
-  //updates just the properties
-  updateSite(site, id) {
+  // updates just the properties
+  updateSite(site) {
     site.lowercaseName = site.name.toLowerCase();
     return this.site$.update(site).then(_ => console.log('sucess')).catch(this.errorHandler);
   }
