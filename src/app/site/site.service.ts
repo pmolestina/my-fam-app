@@ -46,15 +46,15 @@ export class SiteService {
   // destructive save overwrites
   saveSite(site) {
     site.lowercaseName = site.name.toLowerCase();
-    return this.site$.set(site).then(_ => console.log('sucess')).catch(this.errorHandler);
+    return this.site$.set(site).then(_ => console.log('success')).catch(this.errorHandler);
   }
   // updates just the properties
   updateSite(site) {
     site.lowercaseName = site.name.toLowerCase();
-    return this.site$.update(site).then(_ => console.log('sucess')).catch(this.errorHandler);
+    return this.site$.update(site).then(_ => console.log('success')).catch(this.errorHandler);
   }
   removeSite(id) {
-    return this.sites$.remove(id).then(_ => console.log('sucess')).catch(this.errorHandler);
+    return this.sites$.remove(id).then(_ => console.log('success')).catch(this.errorHandler);
   }
   private errorHandler(error) {
     console.log(error);

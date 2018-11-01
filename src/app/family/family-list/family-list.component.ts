@@ -39,10 +39,10 @@ export class FamilyListComponent implements OnInit {
     });
     this.familys$.subscribe(data => {
       this.dataSource = this.commonService.loadDataTable(data, this.filter);
-    })
+    });
   }
   filterChange(value) {
-    if (value.constructor.name.indexOf("Event") > -1) return;
+    if (value.constructor.name.indexOf('Event') > -1) { return; }
     this.filter = value;
     this.dataSource.filter = value.trim().toLowerCase();
     this.sessionService.setFilterValue(value);

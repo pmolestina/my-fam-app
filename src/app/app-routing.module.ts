@@ -12,6 +12,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 import { SiteEditComponent } from './site/site-edit/site-edit.component';
 import { SiteListComponent } from './site/site-list/site-list.component';
+import { UserListComponent } from './admin/user-list/user-list.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'family-edit/:id', component: FamilyEditComponent, canActivate: [AuthGuard] },
   { path: 'site-list', component: SiteListComponent, canActivate: [AuthGuard] },
   { path: 'site-edit/:id', component: SiteEditComponent, canActivate: [AuthGuard] },
+  { path: 'user-list', component: UserListComponent, canActivate: [AuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] }
 ];
 

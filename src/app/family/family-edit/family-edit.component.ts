@@ -25,22 +25,16 @@ export class FamilyEditComponent implements OnInit {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private familyService: FamilyService,
-    private dialogService: DialogService) {
+    private familyService: FamilyService) {
   }
 
   ngOnInit() {
 
     this.id = this.activatedRoute.snapshot.params['id'];
-    this.isNew = this.id == 'new';
-    if (!this.isNew) {
-      this.getFamily(this.id);
-    }
-    else {
-      this.family$ = Observable.of({}) as Observable<Family>;
-    }
+    this.isNew = this.id === 'new';
+    this.getFamily();
   }
-  getFamily(id) {
+  getFamily() {
     this.familyRef = this.familyService.getFamily(this.id);
     this.family$ = this.familyRef.snapshotChanges().map(c => {
       const key = c.payload.key;
@@ -52,16 +46,16 @@ export class FamilyEditComponent implements OnInit {
     );
   }
   addressChange(value) {
-    if (value.constructor.name.indexOf('Event') > -1) return;
+    if (value.constructor.name.indexOf('Event') > -1) { return; }
     this.address = value;
   }
   save(family: Family) {
-    if (this.address != undefined)
-      family.address = this.address;
-    if (this.isNew)
-      this.familyService.addFamily(family).then(_ => this.router.navigate(['family-list']));
-    else
-      this.familyService.saveFamily(family, family.key).then(_ => this.router.navigate(['family-list']));
+    if (this.address !== undefined) {
+      family.address = this.address; }
+    if (this.isNew) {
+      this.familyService.addFamily(family).then(_ => this.router.navigate(['family-list'])); }
+    else {
+      this.familyService.saveFamily(family).then(_ => this.router.navigate(['family-list'])); }
   }
   remove(family: Family) {
     this.familyService.removeFamily(family.key).then(_ => this.router.navigate(['family-list']));
@@ -70,10 +64,10 @@ export class FamilyEditComponent implements OnInit {
     this.router.navigate(['family-list']);
   }
   isFormValid() {
-    return !this.name.hasError('required') 
+    return !this.name.hasError('required');
   }
   actionButtonHandler(value: any) {
-    if (value.constructor.name.indexOf("Event") > -1) return;
+    if (value.constructor.name.indexOf('Event') > -1) { return; }
     console.log(value);
 
     switch (value.action) {

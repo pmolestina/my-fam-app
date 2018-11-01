@@ -24,9 +24,8 @@ export class AuthService {
         console.log('user is logged in');
       }
     });
-    this.ngOnInit();
   }
-  ngOnInit() {
+  initializeActivityWatch() {
     // Start watching for user inactivity.
     this.userIdle.startWatching();
     // Start watching when user idle is starting.
@@ -44,12 +43,12 @@ export class AuthService {
       .catch(error => console.log('auth-error-login', error));
   }
   loginCustom(email, password) {
+    this.initializeActivityWatch();
     return this.afAuth.auth.signInWithEmailAndPassword(email, password);
   }
   logout() {
     this.stopWatching();
-    this.router.navigate(['/home']);
-    this.afAuth.auth.signOut().catch(error => console.log('auth-error-logout', error));
+    this.afAuth.auth.signOut().then(_ => this.router.navigate(['/home'])).catch(error => console.log('auth-error-logout', error));
   }
   register(credentials) {
     return this.afAuth.auth.createUserWithEmailAndPassword(credentials.user, credentials.password);

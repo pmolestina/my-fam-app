@@ -21,20 +21,17 @@ export class FamilyService {
   }
   addFamily(family) {
     family.lowercaseName = family.name.toLowerCase();
-    return this.familys$.push(family);
+    const ref = this.familys$.push(family);
+    family.key = ref.key;
+    return ref.set(family);
   }
-  //destructive save overwrites
-  saveFamily(family, id) {
+  // destructive save overwrites
+  saveFamily(family) {
     family.lowercaseName = family.name.toLowerCase();
-    return this.family$.set(family).then(_ => console.log('sucess')).catch(this.errorHandler);
-  }
-  //updates just the properties
-  updateFamily(family, id) {
-    family.lowercaseName = family.name.toLowerCase();
-    return this.family$.update(family).then(_ => console.log('sucess')).catch(this.errorHandler);
+    return this.family$.set(family).then(_ => console.log('success')).catch(this.errorHandler);
   }
   removeFamily(id) {
-    return this.familys$.remove(id).then(_ => console.log('sucess')).catch(this.errorHandler);
+    return this.familys$.remove(id).then(_ => console.log('success')).catch(this.errorHandler);
   }
   private errorHandler(error) {
     console.log(error);

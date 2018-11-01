@@ -3,6 +3,7 @@ import {FormControl, Validators} from '@angular/forms';
 import {AuthService} from '../auth.service';
 import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {Credentials} from '../../model/credentials';
 
 @Component({
   selector: 'app-forgot-password',
@@ -11,7 +12,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class ForgotPasswordComponent implements OnInit {
 
-  credentials = { email: '', password: '' };
+  credentials = new Credentials();
   email = new FormControl('', [Validators.required, Validators.email]);
 
   constructor(private authService: AuthService, private router: Router,

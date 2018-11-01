@@ -39,17 +39,11 @@ export class ContactEditComponent implements OnInit {
   ngOnInit() {
     this.id = this.activatedRoute.snapshot.params['id'];
     this.isNew = this.id === 'new';
-    if (!this.isNew) {
-      this.getContact(this.id);
-      this.contact$.subscribe(contact => {
-        this.familyKey = contact.familyKey;
-      })
-    }
-    else {
-      this.contact$ = Observable.of({}) as Observable<Contact>;
-    }
+    this.getContact();
+    this.contact$.subscribe(contact => {
+      this.familyKey = contact.familyKey; });
   }
-  getContact(id) {
+  getContact() {
     this.contactRef = this.contactService.getContact(this.id);
     this.contact$ = this.contactRef.snapshotChanges().map(c => ({ key: c.payload.key, ...c.payload.val() }));
     this.contact$.subscribe(c => {
@@ -60,27 +54,30 @@ export class ContactEditComponent implements OnInit {
     this.familyKey = value;
   }
   save(contact: Contact) {
-    if(this.dob.valid)
+    if (this.dob.valid) {
       contact.birthday = this.dob.value.toDateString();
+    }
     contact.familyKey = this.familyKey;
-    if (this.isNew)
+    if (this.isNew) {
       this.contactService.addContact(contact).then(_ => this.router.navigate(['contact-list']));
-    else
-      this.contactService.saveContact(contact, contact.key).then(_ => this.router.navigate(['contact-list']));
+    }
+    else {
+      this.contactService.saveContact(contact).then(_ => this.router.navigate(['contact-list']));
+    }
   }
   remove(contact: Contact) {
     this.contactService.removeContact(contact.key).then(_ => this.router.navigate(['contact-list']));
   }
   isFormValid() {
     return !this.name.hasError('required') &&
-      (this.familyKey != undefined) &&
-      !this.email.hasError('email')
+      (this.familyKey !== undefined) &&
+      !this.email.hasError('email');
   }
   cancel() {
     this.router.navigate(['contact-list']);
   }
   actionButtonHandler(value: any) {
-    if (value.constructor.name.indexOf("Event") > -1) return;
+    if (value.constructor.name.indexOf('Event') > -1) return;
     console.log(value);
 
     switch (value.action) {

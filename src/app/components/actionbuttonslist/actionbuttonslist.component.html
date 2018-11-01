@@ -1,6 +1,5 @@
 <div fxLayout="row" fxLayoutAlign="space-evenly center" class="btns">
   <span *ngFor="let btn of buttons" class="btns">
   <button mat-raised-button color="primary" matTooltip="{{btn.text}}" (click)="onClick(btn.action, data)"><mat-icon>{{btn.icon}}</mat-icon></button>
-
   </span>
 </div>

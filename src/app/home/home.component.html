@@ -1,23 +1,37 @@
-<div class="flex-container">
-  <mat-card class="flex-item">
+<div class="flex-container" *ngIf="!(authService.user$ | async)?.uid">
+  <mat-card class="flex-items">
     <h1>Welcome! </h1>
-    <h2>Molestina Family Application</h2>
-    <p>This app will help organize some of the contact information of all members of the family</p>
-    <div *ngIf="(authService.user$ | async)?.uid">
-      <a class="docs-button mat-raised-button" mat-raised-button [routerLink]="['/profile']"><span class="mat-button-wrapper">My Profile</span><div class="mat-button-ripple mat-ripple" matripple=""></div><div class="mat-button-focus-overlay"></div></a>
-    </div>
-    <div *ngIf="!(authService.user$ | async)?.uid">
+    <h2>The Family Application</h2>
+    <img class="contact-img" src="assets/img/family.jpeg"/>
+    <p>This application will help organize information of all members of the family.</p>
+    <p>If you already have an account click login.</p>
+    <p>If you are a new user click login and register.</p>
+    <div>
       <a class="docs-button mat-raised-button" [routerLink]="['/login']"><span class="mat-button-wrapper">Login</span><div class="mat-button-ripple mat-ripple" matripple=""></div><div class="mat-button-focus-overlay"></div></a>
     </div>
   </mat-card>
-  <!-- <mat-card class="flex-item">
-    <h1>Angular Material</h1>
-    <h2> Material Design components for Angular</h2>
+</div>
+<div class="flex-container" *ngIf="(authService.user$ | async)?.uid">
+  <mat-card class="flex-item">
+    <h1>Profile</h1>
+    <img class="contact-img" src="assets/img/profile.png"/>
+    <div>
+      <a class="docs-button mat-raised-button" mat-raised-button [routerLink]="['/profile']"><span class="mat-button-wrapper">Update Profile</span><div class="mat-button-ripple mat-ripple" matripple=""></div><div class="mat-button-focus-overlay"></div></a>
+    </div>
+  </mat-card>
+  <mat-card class="flex-item">
+    <h1>Contacts</h1>
+    <img class="contact-img" src="assets/img/contacts.jpg"/>
     <p>This is placeholder</p>
   </mat-card>
   <mat-card class="flex-item">
-    <h1>Angular Material</h1>
-    <h2> Material Design components for Angular</h2>
+    <h1>Sites</h1>
+    <img class="contact-img" src="assets/img/website.jpeg"/>
     <p>This is placeholder</p>
-  </mat-card> -->
+  </mat-card>
+  <mat-card class="flex-item">
+    <h1>Birthdays</h1>
+    <img class="contact-img" src="assets/img/birthday.jpeg"/>
+    <p>This is placeholder</p>
+  </mat-card>
 </div>

@@ -4,6 +4,7 @@ import {AuthService} from '../auth.service';
 import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {ParticipantService} from '../../participant/participant.service';
+import {Credentials} from '../../model/credentials';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +12,7 @@ import {ParticipantService} from '../../participant/participant.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  credentials = { email: '' , password: '', password2: ''};
+  credentials = new Credentials();
   hide = true;
   email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('', [Validators.required]);
@@ -22,10 +23,10 @@ export class RegisterComponent implements OnInit {
               public snackBar: MatSnackBar) {
   }
   getErrorMessage() {
-    if (this.email.hasError('required') || this.password.hasError('required') || this.password2.hasError('required'))
-      return 'You must enter a value';
-    if (this.email.hasError('email'))
-      return 'Not a valid email';
+    if (this.email.hasError('required') || this.password.hasError('required') || this.password2.hasError('required')) {
+      return 'You must enter a value';}
+    if (this.email.hasError('email')) {
+      return 'Not a valid email';}
     if (this.credentials.password !== this.credentials.password2) {
       return 'Passwords do not match';
     }

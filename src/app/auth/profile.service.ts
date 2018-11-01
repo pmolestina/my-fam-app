@@ -9,7 +9,7 @@ export class ProfileService {
   user$: AngularFireObject<User>;
   users$: AngularFireList<User>;
 
-  constructor(private afdb: AngularFireDatabase, 
+  constructor(private afdb: AngularFireDatabase,
     private commonService: CommonService,
   private authService: AuthService) {
 
@@ -20,22 +20,22 @@ export class ProfileService {
     this.user$ = this.afdb.object('appusers/' + id);
     return this.user$;
   }
-  getcurrent(){
+  getcurrent() {
     this.authService.user$.subscribe(user => {
-      if(user)
-        this.get(user.uid)
+      if (user) {
+        this.get(user.uid); }
     });
   }
-  add(user:User) {
+  add(user: User) {
     user.lowerCaseDisplayName = user.displayName.toLowerCase();
     return this.users$.push(user);
   }
   addWithKey(user, id) {
     user.lowerCaseDisplayName = user.displayName.toLowerCase();
-    return this.afdb.object('appusers/'+ id).set(user).then(_ => console.log('sucess')).catch(this.commonService.errorHandler);
+    return this.afdb.object('appusers/' + id).set(user).then(_ => console.log('success')).catch(this.commonService.errorHandler);
   }
   save(user) {
     user.lowerCaseDisplayName = user.displayName.toLowerCase();
-    return this.user$.set(user).then(_ => console.log('sucess')).catch(this.commonService.errorHandler);
+    return this.user$.set(user).then(_ => console.log('success')).catch(this.commonService.errorHandler);
   }
 }

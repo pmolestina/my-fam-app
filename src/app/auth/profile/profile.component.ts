@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
-import { AngularFireList } from '@angular/fire/database';
-import { Family } from '../../model/family';
 import { Router } from '@angular/router';
 import { User } from '../../model/user';
 import { ProfileService } from '../profile.service';
@@ -16,7 +14,7 @@ export class ProfileComponent implements OnInit {
   familyKey: string;
   userId: string;
   user: User = new User();
-  hasProfile: boolean = false;
+  hasProfile = false;
   displayName = new FormControl('', [Validators.required]);
   constructor(
     private authService: AuthService,
@@ -43,25 +41,25 @@ export class ProfileComponent implements OnInit {
     });
   }
   isValid() {
-    if ((this.user.familyKey != undefined) && !this.displayName.invalid)
-      return true;
-    else
-      return false;
+    if ((this.user.familyKey !== undefined) && !this.displayName.invalid) {
+      return true; }
+    else {
+      return false; }
   }
   onchange(value) {
     this.user.familyKey = value;
   }
   save(data) {
-    if (!this.hasProfile)
-      this.profileService.addWithKey(data, data.uid).then(_ => this.router.navigate(['home']));
-    else
-      this.profileService.save(data).then(_ => this.router.navigate(['home']));
+    if (!this.hasProfile) {
+      this.profileService.addWithKey(data, data.uid).then(_ => this.router.navigate(['home'])); }
+    else {
+      this.profileService.save(data).then(_ => this.router.navigate(['home'])); }
   }
   cancel() {
     this.router.navigate(['home']);
   }
   actionButtonHandler(value: any) {
-    if (value.constructor.name.indexOf("Event") > -1) return;
+    if (value.constructor.name.indexOf('Event') > -1) { return; }
     console.log(value);
 
     switch (value.action) {

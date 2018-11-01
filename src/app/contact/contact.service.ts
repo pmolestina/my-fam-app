@@ -42,12 +42,12 @@ export class ContactService {
     return ref.set(contact);
   }
   // destructive save overwrites
-  saveContact(contact, id) {
+  saveContact(contact) {
     contact.lowercaseName = contact.name.toLowerCase();
     return this.contact$.set(contact).then(_ => console.log('success')).catch(this.errorHandler);
   }
   // updates just the properties
-  updateContact(contact, id) {
+  updateContact(contact) {
     contact.lowercaseName = contact.name.toLowerCase();
     return this.contact$.update(contact).then(_ => console.log('success')).catch(this.errorHandler);
   }

@@ -26,6 +26,7 @@ import { SiteService } from './site/site.service';
 import { SiteListComponent } from './site/site-list/site-list.component';
 
 import { ParticipantService } from './participant/participant.service';
+import { AdminService } from './admin/admin.service';
 
 import { SessionService } from './core/session.service';
 import { AuthService } from './auth/auth.service';
@@ -55,6 +56,7 @@ import { ProfileService } from './auth/profile.service';
 import { AppConfig } from './app.config';
 import { RegisterComponent } from './auth/register/register.component';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
+import { UserListComponent } from './admin/user-list/user-list.component';
 const config = AppConfig;
 
 const firebaseConfig = config.getfirebaseConfig();
@@ -82,7 +84,8 @@ const firebaseConfig = config.getfirebaseConfig();
     FilterComponent,
     FamiliesComponent,
     RegisterComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    UserListComponent
   ],
   entryComponents: [
     MyerrorhandlerComponent,
@@ -103,7 +106,7 @@ const firebaseConfig = config.getfirebaseConfig();
     FlexLayoutModule,
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({ maxAge: 25 }),
-    UserIdleModule.forRoot({idle: 300, timeout: 1, ping: 600})
+    UserIdleModule.forRoot({idle: 90, timeout: 1, ping: 600})
   ],
   providers: [
     ContactService,
@@ -116,7 +119,8 @@ const firebaseConfig = config.getfirebaseConfig();
     DialogService,
     EncryptService,
     CommonService,
-    ProfileService
+    ProfileService,
+    AdminService
     /*,
     {
       provide: ErrorHandler,

@@ -45,9 +45,7 @@ export class SiteEditComponent implements OnInit {
   getSite() {
     this.siteRef = this.siteService.getSite(this.id);
     this.site$ = this.siteRef.snapshotChanges().map(c => {
-      //const key = c.payload.key!='new'?c.payload.key: undefined;
-      //const data = { key, ...c.payload.val() } as Site;
-      const data = { ...c.payload.val() } as Site;
+      const data = { key: c.payload.key, ...c.payload.val() } as Site;
       if (data.password) {
         data.password = this.encryptService.decrypt(data.password);
       }
