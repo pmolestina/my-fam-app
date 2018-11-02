@@ -24,7 +24,7 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
-
+  <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
 </div>
 <button mat-fab [routerLink]="['/contact-edit/new']">
   <mat-icon>add</mat-icon>

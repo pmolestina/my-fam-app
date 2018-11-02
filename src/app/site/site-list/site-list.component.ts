@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SiteService } from '../site.service';
 import { Observable } from 'rxjs/Observable';
 import { FamilyService } from '../../family/family.service';
@@ -8,6 +8,7 @@ import { DialogService } from '../../core/dialog.service';
 import { EncryptService } from '../../core/encrypt.service';
 import { CommonService } from '../../core/common.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-site-list',
@@ -23,6 +24,8 @@ export class SiteListComponent implements OnInit {
   siteTypes: any[];
   displayedColumns = ['name', 'url', 'action'];
   dataSource = new MatTableDataSource([]);
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
   constructor(
     private siteService: SiteService,
     private familyService: FamilyService,
@@ -70,6 +73,7 @@ export class SiteListComponent implements OnInit {
     this.siteTypeSites$ = this.siteService.siteTypeSites$.map(items => items.sort(this.commonService.sortByName));
     this.siteTypeSites$.subscribe(data => {
       this.dataSource = this.commonService.loadDataTable(data, this.filter);
+      this.dataSource.paginator = this.paginator;
     });
   }
   // filters by family selected

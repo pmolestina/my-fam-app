@@ -1,12 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { ContactService } from '../contact.service';
-import { Contact } from '../../model/contact';
 import { Observable } from 'rxjs/Observable';
-import { Family } from '../../model/family';
 import { SessionService } from '../../core/session.service';
 import { CommonService } from '../../core/common.service';
-import { familyKey } from '../../core/session.store';
-import { MatTableDataSource } from "@angular/material/table";
+import { MatTableDataSource } from '@angular/material/table';
+import {MatPaginator} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-contact-list',
@@ -17,8 +15,9 @@ export class ContactListComponent implements OnInit {
   filter: string;
   familyKey: string = undefined;
   familyContacts$: Observable<any[]>;
-  displayedColumns = ['name','email','action'];
+  displayedColumns = ['name', 'email', 'action'];
   dataSource = new MatTableDataSource([]);
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(
     private contactService: ContactService,
     private sessionService: SessionService,
@@ -39,20 +38,20 @@ export class ContactListComponent implements OnInit {
     this.familyContacts$ = this.contactService.familyContacts$.map(items => items.sort(this.commonService.sortByName));
     this.familyContacts$.subscribe(data => {
       this.dataSource=this.commonService.loadDataTable(data, this.filter);
-    })
+      this.dataSource.paginator = this.paginator;
+    });
   }
-  
-  //filters by family selected
+  // filters by family selected
   filterContacts(familyKey?: string) {
     this.familyKey = familyKey;
     this.contactService.filterByFamily(familyKey);
     this.sessionService.setFamilyKey(familyKey);
   }
-  //this filters by text box
+  // this filters by text box
   filterChange(value) {
-    if (value.constructor.name.indexOf("Event") > -1) return;
+    if (value.constructor.name.indexOf('Event') > -1) { return; }
     this.filter = value;
-    this.dataSource.filter=value.trim().toLowerCase();
+    this.dataSource.filter = value.trim().toLowerCase();
     this.sessionService.setFilterValue(value);
   }
 }

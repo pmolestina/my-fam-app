@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { FamilyService } from '../family.service';
 import { Family } from '../../model/family';
 import { Observable } from 'rxjs/Observable';
@@ -6,6 +6,7 @@ import { AngularFireList } from '@angular/fire/database';
 import { SessionService } from '../../core/session.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { CommonService } from '../../core/common.service';
+import {MatPaginator} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-family-list',
@@ -19,7 +20,7 @@ export class FamilyListComponent implements OnInit {
 
   displayedColumns = ['name', 'action'];
   dataSource = new MatTableDataSource([]);
-
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(private familyService: FamilyService,
     private sessionService: SessionService,
     private commonService: CommonService
@@ -39,6 +40,7 @@ export class FamilyListComponent implements OnInit {
     });
     this.familys$.subscribe(data => {
       this.dataSource = this.commonService.loadDataTable(data, this.filter);
+      this.dataSource.paginator = this.paginator;
     });
   }
   filterChange(value) {
