@@ -17,28 +17,29 @@ export class AppComponent {
   private mediaMatcher: MediaQueryList = matchMedia(`(max-width:${SMALL_WIDTH_BREAKPOINT}px`)
 
   constructor(zone: NgZone, router: Router) {
-    //this is needed so changes in browser size are dynamic
+    // this is needed so changes in browser size are dynamic
     this.mediaMatcher.addListener(mql => zone.run(() => this.mediaMatcher = mql));
     router.events.subscribe((event: any) => {
-      if (event.constructor.name == "NavigationStart") {
+      if (event.constructor.name === 'NavigationStart') {
         this.loading = true;
       }
-      if (event.constructor.name == "NavigationEnd") {
+      if (event.constructor.name === 'NavigationEnd') {
         setTimeout(() => {
           this.loading = false;
 
-        }, 500)
+        }, 500);
       }
     });
   }
   isScreenSmall() {
-    if (this.aut.mobile())
-      return true
-
+    if (this.aut.mobile()) {
+      return true;
+    }
     return this.mediaMatcher.matches;
   }
   toggle() {
-    if (this.aut.mobile() || this.isScreenSmall())
+    if (this.aut.mobile() || this.isScreenSmall()) {
       this.sidenav.toggle();
+    }
   }
 }

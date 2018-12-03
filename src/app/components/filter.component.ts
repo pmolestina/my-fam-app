@@ -1,5 +1,4 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
-import { SessionService } from '../core/session.service';
 
 @Component({
   selector: 'app-filter',
@@ -19,7 +18,6 @@ export class FilterComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    
   }
   onChange() {
     this.change.emit(this.filter);
