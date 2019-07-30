@@ -1,6 +1,7 @@
 export const siteTypes = [
     { key: 5, name: "Air & Hotels" },
     { key: 7, name: "Alex Work" },
+    { key: 14, name: "Assumption" },
     { key: 1, name: "Bills" },
     { key: 3, name: "Education" },
     { key: 10, name: "Not used" },

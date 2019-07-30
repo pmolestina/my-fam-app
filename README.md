@@ -29,8 +29,8 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
-#created contact component with no test files
-ng g c contact/contact-edit --spec false
+#created contact component with no test files and registers in app.module
+ng g c contact/contact-edit --spec false -m app.module
 
 ng build
 firebase deploy
@@ -57,3 +57,12 @@ paging
     sites
     contacts
 spinner service
+
+
+declare and return observable
+ 
+ import {of} from 'rxjs/observable/of'
+ login(): Observable<class>{
+ return of<class>this.object
+ }
+ 
